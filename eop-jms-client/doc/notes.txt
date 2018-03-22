@@ -1,0 +1,20 @@
+HornetQ is no longer supported by Spring.
+So it was rather difficult to find example code on how to publish and subscribe to it.
+
+-- Config of Publishers and Subscribers ("Listeners" in this context)
+The Spring Boot Application creates a bean of type HornetQConnectionFactory, which then is used to
+create another bean of type JmsListenerContainerFactory.
+This bean is used as ContainerFactory in the JmsService for the JmsListener methods and the jmsTemplate.
+
+Question:
+How does the HornetQConnectionFactory know where to look for the HornetQ instance?
+It works, if the standalone HornetQ instance is stopped, a connectivity error is displayed and no messages
+can be published or received. But how? And how will this mechanism hold up if the HornetQ instance is running
+at another host or deployed in a JBoss/Wildfly server?
+
+-- Message acknowledgement
+By default in a @JmsListener method message acknowledgement is sent automatically upon
+successful completion of said method. The message is then deleted from the queue.
+By throwing an Exception the transaction is rolled back and the message stays on the queue.
+HornetQ will retry 3 times (by explicit configuration, default is 10 times) before moving
+the message to the default dead letter queue..
