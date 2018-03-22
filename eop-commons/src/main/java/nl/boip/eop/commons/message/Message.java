@@ -4,6 +4,7 @@ public class Message {
     private String sender;
     private String recipient;
     private String message;
+    private Long received;
 
     public Message() {
     }
@@ -45,5 +46,13 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Long getReceived() {
+        return received;
+    }
+
+    public void setReceived(Long received) {
+        this.received = received;
     }
 }

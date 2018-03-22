@@ -1,4 +1,14 @@
+app:
+  name: "@project.artifactId@"
+  version: "@project.version@"
+
+server:
+  contextPath: "/e-opposition-processing"
+  port: 8080
+
 spring:
+  jackson:
+    default-property-inclusion: NON_NULL
   hornetq:
     host: "localhost"
     port: 5445
