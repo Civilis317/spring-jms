@@ -38,6 +38,7 @@ public class JmsClientApplication {
 
     @Bean
     public HornetQConnectionFactory hornetConnectionFactory() {
+        logger.info("Creating HornetQ ConnectionFactory");
         HornetQConnectionFactory factory = HornetQJMSClient.createConnectionFactoryWithoutHA(
                 JMSFactoryType.CF,
                 new TransportConfiguration(NettyConnectorFactory.class.getName()));
